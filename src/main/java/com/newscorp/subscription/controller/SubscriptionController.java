@@ -18,7 +18,7 @@ public class SubscriptionController {
     @Autowired
     private ILogUtilService logUtilService;
     @Value("${log.truncate.length}")
-    private Integer logTruncateLength;
+    private int logTruncateLength;
 
     @RequestMapping(value = "/subscribe", method = RequestMethod.GET)
     public String subscribe(HttpServletRequest httpServletRequest) {
