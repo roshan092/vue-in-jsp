@@ -55,15 +55,22 @@ public class LogUtilServiceTest {
         String result1 = logUtilService.truncate("123456789012345678901234567890", 25);
         assertThat(result1).isEqualTo("12 ... (truncated) ... 90");
         assertThat(result1.length()).isEqualTo(25);
+        String result2 = logUtilService.truncate("123456789012345678901234567890", 26);
+        assertThat(result2).isEqualTo("123 ... (truncated) ... 90");
+        assertThat(result2.length()).isEqualTo(26);
+        String result3 = logUtilService.truncate("12345678901234567890123456789", 25);
+        assertThat(result3).isEqualTo("12 ... (truncated) ... 89");
+        assertThat(result3.length()).isEqualTo(25);
+        String result4 = logUtilService.truncate("12345678901234567890123456789", 26);
+        assertThat(result4).isEqualTo("123 ... (truncated) ... 89");
+        assertThat(result4.length()).isEqualTo(26);
     }
 
     @Test
     public void shouldNotTruncateLogs() throws Exception {
         String result1 = logUtilService.truncate("123456789012345678901234567890", 31);
         assertThat(result1).isEqualTo("123456789012345678901234567890");
-        assertThat(result1.length()).isEqualTo(30);
         String result2 = logUtilService.truncate("1234567890", 5);
         assertThat(result2).isEqualTo("1234567890");
-        assertThat(result2.length()).isEqualTo(10);
     }
 }

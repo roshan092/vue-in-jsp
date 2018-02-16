@@ -19,7 +19,8 @@ public class LogUtilService implements ILogUtilService {
         }
         StringBuffer truncatedLogBuffer = new StringBuffer();
         int startIndex = ((length - TRUNCATED_TEXT_LENGTH) / 2);
-        truncatedLogBuffer.append(input.substring(0, startIndex));
+        int offset = ((length + TRUNCATED_TEXT_LENGTH) % 2);
+        truncatedLogBuffer.append(input.substring(0, startIndex + offset));
         truncatedLogBuffer.append(TRUNCATED_TEXT);
         truncatedLogBuffer.append(input.substring(logLength - startIndex, logLength));
         return truncatedLogBuffer.toString();
